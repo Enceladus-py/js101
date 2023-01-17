@@ -23,7 +23,25 @@
         <input type="text" id="data">
         <button id="add">Add Option</button>
 
+        
+        <!-- Event Bubbling (Almost all events bubble.) -->
+        <div id="divbubble">
+            <form onclick="alert('form')">FORM
+                <div onclick="alert('div')">DIV
+                    <p onclick="alert('p')">P</p>
+                </div>
+            </form>
+        </div>
+
+        <div id="counter">
+            <p id="ct">0</p>
+            <button id="increase">Increase</button>
+            <button id="decrease">Decrease</button>
+        </div>
+        
+
         <script src="js/tutorial.js"></script>
+        <script src="js/counter.js"></script>
     </body>
 
 </html>

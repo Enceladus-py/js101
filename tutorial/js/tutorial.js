@@ -92,3 +92,12 @@ var g = 1;
 
 console.log(f==g) // true
 console.log(f===g) // false
+
+
+/* Function Expressions */
+
+f = (s1,s2) => s1*s2; // f and g are same expressions
+
+g = function (s1,s2){
+    return s1*s2;
+}
