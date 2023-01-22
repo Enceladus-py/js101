@@ -15,11 +15,11 @@ var a = "test"; // allows redeclaration
 
 /* Booleans */
 
-let c;
-console.log(Boolean(c)); // gives false
+let cq;
+console.log(Boolean(cq)); // gives false
 
-c = "0";
-console.log(Boolean(c)); // gives true
+cq = "0";
+console.log(Boolean(cq)); // gives true
 
 
 /* Type Coercion */
@@ -61,29 +61,11 @@ function inp() {
 
 /* Change <ul> */
 
-function op1(){
+function op1(){ // change the color of the first option by clicking it
     var option = document.getElementById("opt1");
     if(option.style.color == "blue") option.style.color = "black";
     else option.style.color = "blue";   
 }
-
-var list = document.getElementsByClassName("options"); // gives a node list
-var button = document.querySelector("#add");
-
-button.addEventListener("click",function(){
-    var data = document.querySelector("#data");
-
-    if(data.value == ""){
-        alert("Cannot be empty");
-        return;
-    }
-
-    var li = document.createElement("li");
-    li.textContent = data.value;
-
-    list[0].appendChild(li);
-    data.value = "";
-});
 
 /* Operators */
 
