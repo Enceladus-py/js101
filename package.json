@@ -1,0 +1,31 @@
+{
+  "name": "js101",
+  "version": "1.0.0",
+  "description": "JavaScript Tutorials",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Enceladus-py/js101.git"
+  },
+  "keywords": [
+    "Javascript",
+    "Tutorial"
+  ],
+  "author": "Berat Dalsuna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Enceladus-py/js101/issues"
+  },
+  "homepage": "https://github.com/Enceladus-py/js101#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

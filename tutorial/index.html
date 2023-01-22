@@ -10,23 +10,30 @@
 
     <body>
         <h1>Javascript tutorial</h1>
+        <small><a href="/">Back to homepage</a></small>
 
-        <p class="par" onclick="inp();">Hey</p>
+        <div class="borderbox">
+            <p class="par" onclick="inp();">Prompt example</p>
+            <p>Click!</p>
+        </div>
 
+        <!-- Adding options - stored in local storage -->
+        <div class="borderbox">
+            <ul class="options">
+                <li id="opt1" onclick="op1();">Option 1</li>
+                <li>Option 2</li>
+                <li>Option 3</li>
+            </ul>
+    
+            <input type="text" id="data">
+            <button id="add">Add Option</button>
+            <button id="clearLocal">Clear Local Storage</button>
 
-        <ul class="options">
-            <li id="opt1" onclick="op1();">Option 1</li>
-            <li>Option 2</li>
-            <li>Option 3</li>
-        </ul>
+        </div>    
 
-        <input type="text" id="data">
-        <button id="add">Add Option</button>
-
-        <button id="clearLocal">Clear Local Storage</button>
 
         <!-- Event Bubbling (Almost all events bubble.) -->
-        <div id="divbubble">
+        <div class="borderbox" id="divbubble">
             <form onclick="alert('form')">FORM
                 <div onclick="alert('div')">DIV
                     <p onclick="alert('p')">P</p>
@@ -34,17 +41,27 @@
             </form>
         </div>
 
-        <div id="counter">
+        <!-- Increment- Decrement - Store counter -->
+        <div class="borderbox" id="counter">
             <p id="ct"></p>
             <button id="increase">Increase</button>
             <button id="decrease">Decrease</button>
             <button id="reset">Reset</button>
         </div>
         
+        <!-- onSubmit and onChange events -->
+        <div class="borderbox" id="formTutorial">
+            <form method="post" onsubmit="submitFormEvent(e)">
+                <input type="text" name="username" id="username" placeholder="username" onchange="changeFormEvent()">
+                <input type="password" name="password" id="password" placeholder="password" onchange="changeFormEvent()">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
 
         <script src="js/tutorial.js"></script>
         <script src="js/counter.js"></script>
         <script src="js/list.js"></script>
+        <script src="js/form.js"></script>
     </body>
 
 </html>

@@ -1,15 +1,26 @@
 .par{
     background-color: tomato;
+    width: 200px;
+    height: 20px;
 }
 
-#divbubble *{
+.borderbox{
+    margin: 10px;
+    margin-top: 5%;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+#divbubble *{ /* for each element add margin and padding */
     margin: 10px;
     padding: 10px;
     border: 1px solid blue;
 }
 
 #counter {
-    margin: 10px;
-    padding: 10px;
     border: 1px solid red;
+}
+
+#formTutorial {
+    border: 1px solid green;
 }

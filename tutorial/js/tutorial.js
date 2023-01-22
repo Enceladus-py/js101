@@ -56,7 +56,9 @@ console.log(s[9]);
 
 function inp() {
     var name = prompt("Enter your name","Your name...");
-    document.querySelector(".par").innerHTML = name;
+    var par = document.querySelector(".par");
+    par.innerHTML = name;
+    par.style.color = "yellow";
 }
 
 /* Change <ul> */
