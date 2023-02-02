@@ -6,4 +6,4 @@ To run the project, type
 npm run dev
 ```
 
-on the project folder.
+Course link: https://app.patika.dev/courses/javascript/
