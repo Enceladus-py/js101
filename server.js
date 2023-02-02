@@ -29,6 +29,10 @@ app.get("/hmw1", (req, res) => {
     res.sendFile(__dirname + "/hmw1/index.html")
 })
 
+app.get("/form_exercise", (req, res) => {
+  res.sendFile(__dirname + "/form_exercise/index.html")
+})
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })

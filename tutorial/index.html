@@ -51,17 +51,25 @@
         
         <!-- onSubmit and onChange events -->
         <div class="borderbox" id="formTutorial">
-            <form method="post" onsubmit="submitFormEvent(e)">
+            <form method="post" onsubmit="submitFormEvent()">
                 <input type="text" name="username" id="username" placeholder="username" onchange="changeFormEvent()">
                 <input type="password" name="password" id="password" placeholder="password" onchange="changeFormEvent()">
                 <button type="submit">Submit</button>
             </form>
         </div>
 
+        <!-- Dynamic input -->
+        <div class="borderbox" id="dynamic_input_div">
+            <button id="dynamic_input_button" >Click here to create input</button>
+        </div>
+
+
+
         <script src="js/tutorial.js"></script>
         <script src="js/counter.js"></script>
         <script src="js/list.js"></script>
         <script src="js/form.js"></script>
+        <script src="js/dynamic_input.js"></script>
     </body>
 
 </html>
