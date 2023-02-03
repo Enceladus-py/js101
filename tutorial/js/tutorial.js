@@ -85,3 +85,33 @@ f = (s1,s2) => s1*s2; // f and g are same expressions
 g = function (s1,s2){
     return s1*s2;
 }
+
+/* Arrays */
+
+let array = [1,2,'asd',[12,56,'b'],9,'o']; // supports different types
+
+array.push(10); // add from end
+
+array.unshift(0); // add from start
+
+array.splice(1,0,'new element') // adds new element to 1th index - 0 is the number of deleted elements. Splice can be used to delete.
+
+array.pop(); // pops an element from array
+
+array.shift(); // deletes from start
+
+console.log(array);
+
+if(array.includes('asd')){
+    console.log("array includes asd.");
+}
+
+array.forEach((element,index) => { // parameters are optional
+    console.log(element,index);
+});
+
+let mapped_array = array.map((element) => {
+    return element*5;
+});
+
+mapped_array = array.filter(element => element > 5); // return an array with each element being greater than 5
