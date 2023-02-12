@@ -2,60 +2,103 @@ let todo_form = document.getElementById("todoForm");
 
 let todo_list = document.getElementById("todoList");
 
-let todo_items = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []; // check if there is a items array stored
+let todo_items = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : {}; // check if there is a items array stored
 
+let new_id = 0; // will change in iteration -> last key + 1
 
-const removeDiv = () => {
-    console.log("Clicked"); // TODO - idk what to do to remove an element from storage
-} 
+const removeElement = (evt) => {  // removes a task from the todo list upon clicking X button.
+    
+    delete todo_items[parseInt(evt.target.id)];
 
-const liMaker = (action,date) => { // creates a <li> tag inside the <ul> tag for given text
+    localStorage.setItem("items",JSON.stringify(todo_items));
 
-    let li = document.createElement("li");
-    li.className = "border";
-    li.style = "margin: 10px;";
+    $('#toast-deleted').toast('show'); // show toast message
 
-    let row = document.createElement("div"); // create two columns inside a row - one for what to do, one for the date
-    row.className = "row removable-row";
+    $(".btn.btn-danger.remove-element#"+evt.target.id).parent().parent().fadeOut(300, () => { // jsquery for fading effect
+        $(".btn.btn-danger.remove-element#"+evt.target.id).parent().parent().remove();
+    });
 
-    row.addEventListener('click', removeDiv); // event for removal on click
+}
 
-    let col1 = document.createElement("div");
-    col1.className = "col-md";
-    col1.textContent = action;
+const taskDone = (evt) => { // task is done or not done when clicked the div
+    if(!evt.currentTarget.className.includes("active")){
+        evt.currentTarget.className += " active";
+        evt.currentTarget.querySelector("h5").style.visibility = "visible";
+    }
+    else{
+        evt.currentTarget.className = evt.currentTarget.className.slice(0,-7); // deactive remove last -7 characters
+        evt.currentTarget.querySelector("h5").style.visibility = "hidden";
+    }
+}
 
-    let col2 = document.createElement("div");
-    col2.className = "col-md";
-    if(date) col2.textContent = "Due date: " + date;
+const liMaker = (key,action,date) => { // creates a <a> tag inside the <div> tag for given text
 
-    row.appendChild(col1);
-    row.appendChild(col2);
+    let li = document.createElement("a");
+    li.className = "list-group-item list-group-item-action flex-column align-items-start";
+    li.href = "#/";
+    li.addEventListener("click",taskDone);
 
-    li.appendChild(row);
+    let container = document.createElement("div");
+    container.className = "d-flex justify-content-between";
+
+    let heading = document.createElement("h5");
+    //heading.className = "mb-1";
+    heading.textContent = "Done!";
+    heading.style = "visibility: hidden;";
+
+    let sm = document.createElement("small");
+    if (date) sm.textContent = date;
+    else sm.textContent = "No deadline.";
+
+    container.appendChild(heading);
+    container.appendChild(sm);
+
+    li.appendChild(container);
+
+    let p_div = document.createElement("div");
+
+    let p = document.createElement("p");
+    p.className = "mb-1";
+    p.textContent = action;
+
+    p_div.appendChild(p);
+    li.appendChild(p_div);
+
+    let right_div = document.createElement("div");
+    right_div.className = "text-end";
+
+    let delete_button = document.createElement("button");
+    delete_button.className = "btn btn-danger remove-element";
+    delete_button.id = key;
+    delete_button.textContent = "X";
+    delete_button.addEventListener("click",removeElement);
+
+    right_div.appendChild(delete_button);
+    li.appendChild(right_div);
 
     todo_list.appendChild(li);
-    todo_list.appendChild(li);
-
 };
 
-todo_items.forEach(item => { // for each [task,date] append to list
-    liMaker(item[0], item[1]);
-});
+for (const [key, value] of Object.entries(todo_items)) { // show previous tasks stored in local storage
+    liMaker(key,value[0],value[1]);
+    new_id = parseInt(key) + 1;
+}
 
-todo_form.addEventListener("submit", (e) => {
+todo_form.addEventListener("submit", (e) => { // on form submit add task to local storage and page
     e.preventDefault();
     
     let action = document.getElementById("todoAction");
     let date = document.getElementById("todoDate");
 
-    console.log(action);
-
     if(action.value){
         
-        liMaker(action.value,date.value);
+        liMaker(new_id,action.value,date.value);
         
-        todo_items.push([action.value,date.value]);
+        todo_items[new_id] = [action.value,date.value];
+        new_id++;
         localStorage.setItem('items', JSON.stringify(todo_items)); // update items
+
+        $('#toast-inserted').toast('show');
 
         action.value = ""; // reset input fields
         date.value = "";
@@ -63,10 +106,11 @@ todo_form.addEventListener("submit", (e) => {
 });
 
 
-let resetButton = document.getElementById("reset-button");
+let resetButton = document.getElementById("reset-button"); // clears all items
 
 resetButton.addEventListener("click", () => {
-    todo_items = [];
-    localStorage.clear();
+    todo_items = {};
+    new_id = 0;
+    localStorage.removeItem("items");
     todo_list.innerHTML = "";
 });

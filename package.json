@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Enceladus-py/js101#readme",
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "express": "^4.18.2"
   },
   "devDependencies": {
