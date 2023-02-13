@@ -33,6 +33,10 @@ app.get("/hmw2", (req, res) => {
   res.sendFile(__dirname + "/hmw2/index.html")
 })
 
+app.get("/hmw3", (req, res) => {
+  res.sendFile(__dirname + "/hmw3/index.html")
+})
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })
