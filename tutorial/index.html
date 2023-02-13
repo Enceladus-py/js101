@@ -13,12 +13,14 @@
         <small><a href="/">Back to homepage</a></small>
 
         <div class="borderbox">
-            <p class="par" onclick="inp();">Prompt example</p>
+            <h3>onclick example</h3>
+            <p class="par" onclick="inp();">Prompt</p>
             <p>Click!</p>
         </div>
 
         <!-- Adding options - stored in local storage -->
         <div class="borderbox">
+            <h3>Adding options - local storage used</h3>
             <ul class="options">
                 <li id="opt1" onclick="op1();">Option 1</li>
                 <li>Option 2</li>
@@ -34,6 +36,7 @@
 
         <!-- Event Bubbling (Almost all events bubble.) -->
         <div class="borderbox" id="divbubble">
+            <h3>Event Bubbling</h3>
             <form onclick="alert('form')">FORM
                 <div onclick="alert('div')">DIV
                     <p onclick="alert('p')">P</p>
@@ -43,6 +46,7 @@
 
         <!-- Increment- Decrement - Store counter -->
         <div class="borderbox" id="counter">
+            <h3>Counter example</h3>
             <p id="ct"></p>
             <button id="increase">Increase</button>
             <button id="decrease">Decrease</button>
@@ -51,6 +55,7 @@
         
         <!-- onSubmit and onChange events -->
         <div class="borderbox" id="formTutorial">
+            <h3>onSubmit and onChange events </h3>
             <form method="post" onsubmit="submitFormEvent()">
                 <input type="text" name="username" id="username" placeholder="username" onchange="changeFormEvent()">
                 <input type="password" name="password" id="password" placeholder="password" onchange="changeFormEvent()">
@@ -60,7 +65,14 @@
 
         <!-- Dynamic input -->
         <div class="borderbox" id="dynamic_input_div">
+            <h3>Dynamic input</h3>
             <button id="dynamic_input_button" >Click here to create input</button>
+        </div>
+
+        <!-- Objects -->
+        <div class="borderbox" id="dynamic_input_div">
+            <h3>stringify for the person object</h3>
+            <div id="object_tutorial"></div>
         </div>
 
 
@@ -70,6 +82,7 @@
         <script src="js/list.js"></script>
         <script src="js/form.js"></script>
         <script src="js/dynamic_input.js"></script>
+        <script src="js/objects.js"></script>
 
     </body>
 

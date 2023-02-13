@@ -21,5 +21,6 @@ function clickEvent(){
 
 function resetClickEvent(){
     c.innerHTML = 0;
+    counter = 0;
     localStorage.setItem("counter",JSON.stringify(0));
 }
