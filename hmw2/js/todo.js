@@ -21,22 +21,35 @@ const removeElement = (evt) => {  // removes a task from the todo list upon clic
 }
 
 const taskDone = (evt) => { // task is done or not done when clicked the div
-    if(!evt.currentTarget.className.includes("active")){
+    
+    let element_id = evt.currentTarget.myParam;
+
+    if(!todo_items[element_id][2]){ // undone
         evt.currentTarget.className += " active";
         evt.currentTarget.querySelector("h5").style.visibility = "visible";
+        todo_items[element_id][2] = true; // set as done
     }
     else{
-        evt.currentTarget.className = evt.currentTarget.className.slice(0,-7); // deactive remove last -7 characters
+        evt.currentTarget.className = evt.currentTarget.className.slice(0,-7); // deactive remove last 7 characters
         evt.currentTarget.querySelector("h5").style.visibility = "hidden";
+        todo_items[element_id][2] = false; // set as undone
     }
+    localStorage.setItem("items",JSON.stringify(todo_items));
 }
 
-const liMaker = (key,action,date) => { // creates a <a> tag inside the <div> tag for given text
+const liMaker = (key,action,date,done) => { // creates a <a> tag inside the <div> tag for given text
 
     let li = document.createElement("a");
-    li.className = "list-group-item list-group-item-action flex-column align-items-start";
+    if (done){
+        li.className = "list-group-item list-group-item-action flex-column align-items-start active";
+    }
+    else {
+        li.className = "list-group-item list-group-item-action flex-column align-items-start";
+    }
+
     li.href = "#/";
     li.addEventListener("click",taskDone);
+    li.myParam = new_id;
 
     let container = document.createElement("div");
     container.className = "d-flex justify-content-between";
@@ -44,7 +57,9 @@ const liMaker = (key,action,date) => { // creates a <a> tag inside the <div> tag
     let heading = document.createElement("h5");
     //heading.className = "mb-1";
     heading.textContent = "Done!";
-    heading.style = "visibility: hidden;";
+    if(!done){
+        heading.style = "visibility: hidden;";
+    }
 
     let sm = document.createElement("small");
     if (date) sm.textContent = date;
@@ -80,7 +95,7 @@ const liMaker = (key,action,date) => { // creates a <a> tag inside the <div> tag
 };
 
 for (const [key, value] of Object.entries(todo_items)) { // show previous tasks stored in local storage
-    liMaker(key,value[0],value[1]);
+    liMaker(key,value[0],value[1],value[2]); // task, deadline, done?
     new_id = parseInt(key) + 1;
 }
 
@@ -94,7 +109,7 @@ todo_form.addEventListener("submit", (e) => { // on form submit add task to loca
         
         liMaker(new_id,action.value,date.value);
         
-        todo_items[new_id] = [action.value,date.value];
+        todo_items[new_id] = [action.value,date.value,false]; // false if it is not active (default)
         new_id++;
         localStorage.setItem('items', JSON.stringify(todo_items)); // update items
 
