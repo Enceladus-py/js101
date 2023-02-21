@@ -1,4 +1,4 @@
-## I'm Learning JavaScript
+# JS101
 
 To run the project, type
 
